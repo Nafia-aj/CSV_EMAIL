@@ -46,8 +46,15 @@ function sendEmails(event) {
                         })
                         .then(response => {
                             if (!response.ok) {
-                                throw new Error('Network response was not ok');
+                                if (response.status === 413) {
+                                    throw new Error('File size exceeds the allowed limit.');
+                                } else {
+                                    throw new Error('Network response was not ok');
+                                }
                             }
+                            return response.json(); // Assuming the server returns JSON
+                        })
+                        .then(data => {
                             alert("Message sent successfully");
                             document.getElementById('subject').value = '';
                             document.getElementById('content').value = '';
@@ -56,7 +63,7 @@ function sendEmails(event) {
                         })
                         .catch(error => {
                             console.error('Error sending message:', error);
-                            alert("Error sending message");
+                            alert("Error sending message: " + error.message);
                         });
                     }
                 });
