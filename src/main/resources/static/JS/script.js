@@ -1,11 +1,11 @@
 function sendEmails(event) {
     event.preventDefault();
 
+    var emails = document.getElementById("emails").value.split(",");
     var subject = document.getElementById("subject").value;
     var content = document.getElementById("content").value;
     var attachment = document.getElementById("attachment").files[0];
     var csvFile = document.getElementById("csvFile").files[0];
-
 
     if (!csvFile) {
         alert("Please select a CSV file.");
@@ -29,40 +29,42 @@ function sendEmails(event) {
 
                 results.data.forEach(function (row) {
                     if (row.email) {
-                        var formData = new FormData();
-                        formData.append("to", row.email);
-                        formData.append("subject", subject);
-                        formData.append("content", content);
-                        formData.append("csvFile", csvFile);
+                        emails.forEach(function(email) {
+                            var formData = new FormData();
+                            formData.append("to", email.trim()); // Trim to remove extra spaces
+                            formData.append("subject", subject);
+                            formData.append("content", content);
+                            formData.append("csvFile", csvFile);
 
-                        if (attachment) {
-                            formData.append("attachment", attachment);
-                        }
-
-                        fetch('/api/send-email', {
-                            method: 'POST',
-                            body: formData
-                        })
-                        .then(response => {
-                            if (!response.ok) {
-                                if (response.status === 413) {
-                                    throw new Error('File size exceeds the allowed limit.');
-                                } else {
-                                    throw new Error('Network response was not ok');
-                                }
+                            if (attachment) {
+                                formData.append("attachment", attachment);
                             }
-                            return response.json(); 
-                        })
-                        .then(data => {
-                            alert("Message sent successfully");
-                            document.getElementById('subject').value = '';
-                            document.getElementById('content').value = '';
-                            document.getElementById('csvFile').value = '';
-                            document.getElementById('attachment').value = '';
-                        })
-                        .catch(error => {
-                            console.error('Error sending message:', error);
-                            alert("Error sending message: " + error.message);
+
+                            fetch('/api/send-email', {
+                                method: 'POST',
+                                body: formData
+                            })
+                            .then(response => {
+                                if (!response.ok) {
+                                    if (response.status === 413) {
+                                        throw new Error('File size exceeds the allowed limit.');
+                                    } else {
+                                        throw new Error('Network response was not ok');
+                                    }
+                                }
+                                return response.json(); 
+                            })
+                            .then(data => {
+                                alert("Message sent successfully");
+                                document.getElementById('subject').value = '';
+                                document.getElementById('content').value = '';
+                                document.getElementById('csvFile').value = '';
+                                document.getElementById('attachment').value = '';
+                            })
+                            .catch(error => {
+                                console.error('Error sending message:', error);
+                                alert("Error sending message: " + error.message);
+                            });
                         });
                     }
                 });
