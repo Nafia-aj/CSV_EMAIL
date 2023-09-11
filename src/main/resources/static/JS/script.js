@@ -6,7 +6,6 @@ function sendEmails(event) {
     var attachment = document.getElementById("attachment").files[0];
     var csvFile = document.getElementById("csvFile").files[0];
 
-    console.log("Attachment:", attachment);
 
     if (!csvFile) {
         alert("Please select a CSV file.");
@@ -52,7 +51,7 @@ function sendEmails(event) {
                                     throw new Error('Network response was not ok');
                                 }
                             }
-                            return response.json(); // Assuming the server returns JSON
+                            return response.json(); 
                         })
                         .then(data => {
                             alert("Message sent successfully");
