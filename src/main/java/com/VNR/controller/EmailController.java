@@ -71,7 +71,7 @@ public class EmailController {
             javaMailSender.send(message);
 
             System.out.println("Email sent successfully.");
-            return ResponseEntity.ok("Email sent successfully.");
+            return ResponseEntity.ok("{\"message\": \"Email sent successfully.\"}");
 
         } catch (MessagingException e) {
             e.printStackTrace();
