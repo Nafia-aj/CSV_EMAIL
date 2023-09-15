@@ -16,6 +16,7 @@ body {
 
 h2 {
     text-align: center;
+    margin: 0;
 }
 
 form {
@@ -29,13 +30,20 @@ label {
 
 input[type="text"],
 input[type="email"],
-input[type="file"],
-textarea {
+input[type="file"]{
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+#content {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    height: 150px;
+    font-family: Arial, sans-serif; }
 
 input[type="submit"] {
     width: 10vw;
@@ -46,6 +54,7 @@ input[type="submit"] {
     border-radius: 5px;
     cursor: pointer;
     margin-left: 220px;
+
 }
 
 input[type="submit"]:hover {

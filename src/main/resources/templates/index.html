@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -7,6 +6,12 @@
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
     <script src="/JS/script.js"></script>
+    
+    
+<link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />
+<script type="text/javascript" src="/richtexteditor/rte.js"></script>
+<script type="text/javascript" src='/richtexteditor/plugins/all_plugins.js'></script>
+
 </head>
 
 <body>
@@ -24,16 +29,20 @@
             <input type="text" id="subject" name="subject" required>
 
             <label for="content">Content:</label>
-            <textarea id="content" name="content" rows="4" required></textarea>
-
+            <div id="content"></div>
             <label for="attachment">Attach a File (Optional):</label>
             <input type="file" id="attachment" name="attachment" accept="image/*,application/pdf">
-           
+          
 
 
             <input type="submit" value="Send">
         </form>
     </div>
+    
+    
+<script>
+	var content1 = new RichTextEditor("#content");
+</script>
 </body>
 
 </html>

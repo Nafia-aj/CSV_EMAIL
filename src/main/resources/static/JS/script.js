@@ -14,7 +14,6 @@ function sendEmails(event) {
         return;
     }
 
-    // Split email addresses entered in the input field
     var emailAddresses = emailInput.split(',');
 
     if (csvFile) {
@@ -72,7 +71,7 @@ function sendEmailsToAddresses(emailAddresses, subject, content, attachment) {
                     throw new Error('Network response was not ok');
                 }
             }
-            return response.json(); // Assuming the server returns JSON
+            return response.json(); 
         })
         .then(data => {
             alert("Message sent successfully");
