@@ -2,26 +2,21 @@ package com.VNR.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import jakarta.mail.internet.MimeMessage;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-
-import jakarta.mail.MessagingException;
-import org.springframework.core.io.InputStreamSource;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.http.HttpStatus;
+import org.springframework.core.io.InputStreamSource;
 
+import jakarta.mail.internet.MimeMessage;
 
 import java.io.IOException;
 import java.io.InputStream;
-
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class EmailController {
@@ -36,7 +31,7 @@ public class EmailController {
     }
     
     @PostMapping("/api/send-email")
-    public ResponseEntity<String> sendEmail(@RequestParam String to,
+    public ResponseEntity<Map<String, String>> sendEmail(@RequestParam String to,
                                             @RequestParam String subject,
                                             @RequestParam String content,
                                             @RequestParam(required = false) MultipartFile attachment,
@@ -71,23 +66,14 @@ public class EmailController {
             javaMailSender.send(message);
 
             System.out.println("Email sent successfully.");
-            return ResponseEntity.ok("Email sent successfully.");
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Email sent successfully.");
+            return ResponseEntity.ok(response);
 
-        } catch (MessagingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error sending email: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error sending email.");
-        }
-    }
-
-    @ControllerAdvice
-    public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-
-        @ExceptionHandler(MaxUploadSizeExceededException.class)
-        public ResponseEntity<String> handleMaxUploadSizeExceeded(MaxUploadSizeExceededException e) {
-            return ResponseEntity
-                    .status(HttpStatus.PAYLOAD_TOO_LARGE)
-                    .body("File size exceeds the allowed limit.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 }

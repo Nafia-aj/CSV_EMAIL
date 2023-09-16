@@ -7,11 +7,9 @@
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
     <script src="/JS/script.js"></script>
     
-    
-<link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />
+    <link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />
 <script type="text/javascript" src="/richtexteditor/rte.js"></script>
 <script type="text/javascript" src='/richtexteditor/plugins/all_plugins.js'></script>
-
 
 </head>
 
@@ -21,7 +19,7 @@
       <form method="post" enctype="multipart/form-data" id="form-name" onsubmit="sendEmails(event)">
 
             <label for="emails">Email id:</label>
-            <input type="text" id="emails" name="emails" required >
+            <input type="text" id="emails" name="emails" required>
 
             <label for="csvFile">Upload CSV File:</label>
             <input type="file" id="csvFile" name="csvFile" accept=".csv,xlsx" required>
@@ -30,20 +28,17 @@
             <input type="text" id="subject" name="subject" required>
 
             <label for="content">Content:</label>
-            <div id="content"></div>
+            <textarea id="content" name="content" rows="4" required></textarea>
+
             <label for="attachment">Attach a File (Optional):</label>
             <input type="file" id="attachment" name="attachment" accept="image/*,application/pdf">
-          
-
 
             <input type="submit" value="Send">
         </form>
     </div>
     
-    
-<script>
-	var content1 = new RichTextEditor("#content");
-	
+    <script>
+	var editor1 = new RichTextEditor("#content");
 </script>
 </body>
 

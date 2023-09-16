@@ -1,4 +1,5 @@
-  body {
+
+   body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
     margin: 0;
@@ -16,7 +17,6 @@
 
 h2 {
     text-align: center;
-     margin: 0;
 }
 
 form {
@@ -30,19 +30,12 @@ label {
 
 input[type="text"],
 input[type="email"],
-input[type="file"] {
+input[type="file"],
+#content {
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
-#content {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    min-height: 200px; 
-    width: 100%; 
-    margin-right: 2px;
 }
 
 input[type="submit"] {
@@ -53,7 +46,7 @@ input[type="submit"] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 330px;
+    margin-left: 220px;
 }
 
 input[type="submit"]:hover {

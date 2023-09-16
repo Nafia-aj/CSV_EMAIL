@@ -1,19 +1,12 @@
 ﻿
 /* TODO: use @import for your css */
 
-body {
-	overflow-y: hidden;
-	padding: 0px;
-	margin: 0px
-}
-
 body, table, p, div {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #414141;
 	font-size: 14px;
 	line-height: 1.6;
 }
-
 a {
 	color: #377dff;
 	text-decoration: none;
@@ -21,11 +14,6 @@ a {
 	-moz-transition: color 0.2s ease 0s, text-decoration 0.2s ease 0s;
 	-o-transition: color 0.2s ease 0s, text-decoration 0.2s ease 0s;
 	transition: color 0.2s ease 0s, text-decoration 0.2s ease 0s;
-}
-
-::selection {
-	background: #b5d6fd;
-	color: #000030;
 }
 
 /*RTE_DefaultConfig.items_InlineClasses*/
@@ -58,34 +46,16 @@ a {
 	box-sizing: border-box;
 }
 
-[__rte_selected_hover__] {
-	background-color: #b5d6fd;
+
+body {
 }
 
-[__rte_selected_cell] {
-	background-color: #b5d6fd;
+a {
+	text-decoration: none;
 }
 
-[__rte_selected_hover] {
-	background: #b5d6fd;
-	color: #000;
-}
-
-.rte-toggleborder [__rte_selected_block] {
-	/*box-shadow: 0 0 0 0.5px #377dff;*/ /*not work well for FireFox*/
-	/*border-radius: 1px;*/
-	/*outline: 0.5px solid #377dff99;*/
-	border-right:solid 1px #377dff;
-}
-
-.rte-toggleborder blockquote[__rte_selected_block] {
-	/*box-shadow: 0 0 0 0.5px #377dff;*/ /*not work well for FireFox*/
-	/*border-radius: 1px;*/
-	outline: none;
-}
-
-.rte-toggleborder td[__rte_selected_block] {
-	box-shadow: none !important;
+a:hover {
+	text-decoration: underline;
 }
 
 table {
@@ -93,52 +63,22 @@ table {
 	border-collapse: collapse;
 }
 
-	table:not([width]) {
-		width: 100%;
-	}
+table:not([width]) {
+	width: 100%;
+}
 
-	table[border="0"] td, table:not([border]) td, table[border="0"] th, table:not([border]) th {
-		border: 1px solid #ddd;
-	}
-
+table[border="0"] td, table:not([border]) td, table[border="0"] th, table:not([border]) th {
+	border: 1px solid #ddd;
+}
 thead {
 	background-color: #eee;
 }
-
 .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
 	padding: 8px;
 	line-height: 1.42857143;
 	vertical-align: top;
 	border-top: 1px solid #ddd;
 }
-
-video-container {
-	position: relative
-}
-
-	video-container:after {
-		content: '';
-		display: block;
-		position: absolute;
-		z-index: 1;
-		left: 0px;
-		top: 0px;
-		right: 0px;
-		bottom: 0px;
-		background-color: rgba(128,128,128,0.2);
-	}
-
-blockquote {
-	border-left: 3px solid #ddd;
-	padding: 5px 0 5px 10px;
-	margin: 15px 0 15px 15px;
-}
-
-
-img {
-	cursor: default;
-}
-
 
 
 
