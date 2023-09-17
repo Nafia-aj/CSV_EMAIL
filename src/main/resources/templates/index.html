@@ -22,14 +22,14 @@
             <input type="text" id="emails" name="emails" required>
 
             <label for="csvFile">Upload CSV File:</label>
-            <input type="file" id="csvFile" name="csvFile" accept=".csv,xlsx" required>
+            <input type="file" id="csvFile" name="csvFile" accept=".csv,xlsx" >
 
             <label for="subject">Subject:</label>
             <input type="text" id="subject" name="subject" required>
 
             <label for="content">Content:</label>
             <textarea id="content" name="content" rows="4" required></textarea>
-          
+
 
             <label for="attachment">Attach a File (Optional):</label>
             <input type="file" id="attachment" name="attachment" accept="image/*,application/pdf">
@@ -40,6 +40,7 @@
     
     <script>
 	var editor1 = new RichTextEditor("#content");
+	
 </script>
 </body>
 
