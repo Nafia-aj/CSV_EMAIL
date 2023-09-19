@@ -14,7 +14,11 @@ function sendEmails(event) {
         return;
     }
 
-    var emailAddresses = emailInput.split(',');
+  var emailAddresses = [];
+
+            if (emailInput) {
+                emailAddresses = emailInput.split(',');
+            }
 
     if (csvFile) {
         var reader = new FileReader();
