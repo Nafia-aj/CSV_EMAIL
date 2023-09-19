@@ -17,7 +17,12 @@
     <div class="container">
         <h2>Contact Us</h2>
       <form method="post" enctype="multipart/form-data" id="form-name" onsubmit="sendEmails(event)">
-
+<label for="template">Email Template:</label>
+<select id="template" name="template">
+    <option value="default">Default</option>
+    <option value="option2">Option 2</option>
+    <option value="option3">Option 3</option>
+</select>
             <label for="emails">Email id:</label>
             <input type="text" id="emails" name="emails" >
 

@@ -31,8 +31,7 @@ label {
 input[type="text"],
 input[type="email"],
 input[type="file"],
-select,option,
-#content {
+textarea {
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
