@@ -53,58 +53,60 @@ function sendEmails(event) {
     }
 }
 
-function sendEmailsToAddresses(emailAddresses, subject, content, attachment, template) {
+  function sendEmailsToAddresses(emailAddresses, subject, content, attachment, template) {
 
-    function sendEmail(to) {
-        var formData = new FormData();
-        formData.append("to", to.trim());
-        formData.append("subject", subject);
+            function sendEmail(to, name) {
+                var formData = new FormData();
+                formData.append("to", to.trim());
+                formData.append("subject", subject);
 
-        if (template === "default") {
-            content = content;
-        } else if (template === "option2") {
-            content = "Dear Artist,\n\n" + content;
-        } else if (template === "option3") {
-            var name = to.split('@')[0];
-            content = "Dear " + name + ",\n\n" + content;
-        }
+                var individualContent;
 
-        formData.append("content", content);
-
-        if (attachment) {
-            formData.append("attachment", attachment);
-        }
-
-        fetch('/api/send-email', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-                if (response.status === 413) {
-                    throw new Error('File size exceeds the allowed limit.');
-                } else {
-                    throw new Error('Network response was not ok');
+                if (template === "default") {
+                    individualContent = content;
+                } else if (template === "option2") {
+                    individualContent = "Dear Artist,\n\n" + content;
+                } else if (template === "option3") {
+                    individualContent = "Dear " + name + ",\n\n" + content;
                 }
+
+                formData.append("content", individualContent);
+
+                if (attachment) {
+                    formData.append("attachment", attachment);
+                }
+
+                fetch('/api/send-email', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        if (response.status === 413) {
+                            throw new Error('File size exceeds the allowed limit.');
+                        } else {
+                            throw new Error('Network response was not ok');
+                        }
+                    }
+                    return response.json();
+                })
+                .catch(error => {
+                    console.error('Error sending message:', error);
+                });
             }
-            return response.json();
-        })
-        .catch(error => {
-            console.error('Error sending message:', error);
-        });
-    }
 
-    emailAddresses.forEach(function (to) {
-        sendEmail(to);
-    });
+            emailAddresses.forEach(function (to) {
+                var name = to.split('@')[0]; // Extract name from email address
+                sendEmail(to, name);
+            });
 
-    setTimeout(function() {
-        alert( " messages sent successfully");
-        document.getElementById('subject').value = '';
-        document.getElementById('content').value = '';
-        document.getElementById('csvFile').value = '';
-        document.getElementById('attachment').value = '';
-        document.getElementById('emails').value = '';
-        document.getElementById('template').value = 'default';
-    }); 
-}
+            setTimeout(function () {
+                alert(" messages sent successfully");
+                document.getElementById('subject').value = '';
+                document.getElementById('content').value = '';
+                document.getElementById('csvFile').value = '';
+                document.getElementById('attachment').value = '';
+                document.getElementById('emails').value = '';
+                document.getElementById('template').value = 'default';
+            });
+        }
