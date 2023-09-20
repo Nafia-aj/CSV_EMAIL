@@ -1,4 +1,3 @@
-document.getElementById('emailForm').addEventListener('submit', sendEmails);
 function sendEmails(event) {
     event.preventDefault();
 
@@ -97,7 +96,7 @@ function sendEmails(event) {
             }
 
             emailAddresses.forEach(function (to) {
-                var name = to.split('@')[0]; // Extract name from email address
+                var name = to.split('@')[0]; 
                 sendEmail(to, name);
             });
 
