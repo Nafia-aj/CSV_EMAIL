@@ -1,3 +1,4 @@
+document.getElementById('emailForm').addEventListener('submit', sendEmails);
 function sendEmails(event) {
     event.preventDefault();
 
